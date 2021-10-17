@@ -1,4 +1,4 @@
-from exceptions import BoardInitException, BoardPutExceptionItem, BoardPutExceptionCoordinates
+from homework_1.exceptions import BoardInitException, BoardPutExceptionItem, BoardPutExceptionCoordinates, BoardPutExceptionExists
 
 MAPPING = {0: 'x', 1: 'o', -1: '_'}
 
@@ -16,10 +16,12 @@ class Board:
 
     def put(self, coordinates, item):
         if item not in [0, 1]:
-            raise BoardPutExceptionItem
+            raise BoardPutExceptionItem(item=item)
         if len(coordinates) != 2 or not isinstance(coordinates[0], int) or not isinstance(coordinates[1], int) \
             or coordinates[0] < 0 or  coordinates[1] < 0 or coordinates[0] > self.size - 1 or coordinates[1] > self.size - 1:
-            raise BoardPutExceptionCoordinates
+            raise BoardPutExceptionCoordinates(coordinates=coordinates)
+        if self.board[coordinates[0]][coordinates[1]] != -1:
+            raise BoardPutExceptionExists(coordinates)
         self.board[coordinates[0]][coordinates[1]] = item
 
     @staticmethod

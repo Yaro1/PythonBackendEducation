@@ -24,3 +24,9 @@ class BoardPutExceptionCoordinates(BoardException):
 
     def __init__(self, coordinates, message="Coordinates should be two digit inside [0 -> board.size]"):
         super().__init__(coordinates, message)
+
+
+class BoardPutExceptionExists(BoardException):
+
+    def __init__(self, coordinates, message="On this coordinates already exist element"):
+        super().__init__(coordinates, message)
