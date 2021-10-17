@@ -1,11 +1,19 @@
+"""
+Execution module for homework_1.
+"""
 from homework_1.tic_tac_toe import Board
 
 
 def execution():
-    help = "If you want to print board please press p.\nIf you want to quit please press q."
+    """
+    Function for playing on tic-tac-toe
+    :return:
+    """
+    help_info = "If you want to print board please press p.\nIf you want to quit please press q."
     print("Start game.")
-    print(help)
-    first_player, second_player = input("Please enter the name first player.\n"), input("Please enter the name second player.\n")
+    print(help_info)
+    hello = "Please enter the name {number} player.\n"
+    first_player, second_player = input(hello.format("first")), input(hello.format("second"))
     map_players = {'x': first_player, 'o': second_player}
     size_board = int(input("Please enter the size board.\n"))
     board = Board(size_board)
