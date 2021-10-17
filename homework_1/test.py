@@ -1,6 +1,6 @@
 import unittest
-from tic_tac_toe import Board
-from exceptions import BoardInitException
+from homework_1.tic_tac_toe import Board
+from homework_1.exceptions import BoardInitException, BoardPutExceptionCoordinates, BoardPutExceptionItem, BoardPutExceptionExists
 
 
 class TicTacToeTest(unittest.TestCase):
@@ -18,7 +18,23 @@ class TicTacToeTest(unittest.TestCase):
         self.assertRaises(BoardInitException, Board, 2)
 
     def test_put_1(self):
-        pass
+        self.assertRaises(BoardPutExceptionCoordinates, Board().put, (-1, -1), 1)
+
+    def test_put_2(self):
+        self.assertRaises(BoardPutExceptionItem, Board().put, (0, 0), 21312312312)
+
+    def test_put_3(self):
+        self.assertRaises(BoardPutExceptionCoordinates, Board().put, (100, 100), 0)
+
+    def test_put_4(self):
+        board = Board()
+        board.put((0, 0), 0)
+        self.assertRaises(BoardPutExceptionExists, board.put, (0, 0), 1)
+
+    def test_put_5(self):
+        board = Board()
+        board.put((0, 0), 0)
+        self.assertRaises(BoardPutExceptionExists, board.put, (0, 0), 0)
 
     def test_game_result_1(self):
         board = Board()
