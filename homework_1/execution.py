@@ -13,7 +13,7 @@ def execution():
     print("Start game.")
     print(help_info)
     hello = "Please enter the name {number} player.\n"
-    first_player, second_player = input(hello.format("first")), input(hello.format("second"))
+    first_player, second_player = input(hello.format(number="first")), input(hello.format(number="second"))
     map_players = {'x': first_player, 'o': second_player}
     size_board = int(input("Please enter the size board.\n"))
     board = Board(size_board)
@@ -37,3 +37,8 @@ def execution():
             return 0
         steps += 1
     print("This is a draw!")
+
+execution()
+
+# тесты захуячить получше
+# пользовательский ввод проверить на валидацию
