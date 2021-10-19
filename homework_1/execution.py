@@ -17,7 +17,7 @@ def execution():
     first_player, second_player = input(hello.format(number="first")), input(hello.format(number="second"))
     map_players = {'x': first_player, 'o': second_player}
     size_board = input("Please enter the size board.\n")
-    while not size_board.isdigit() or int(size_board) % 2 == 0:
+    while not size_board.isdigit() or int(size_board) % 2 == 0 or int(size_board) < 3:
         size_board = input("Boardsize should be greater than 2 and odd\nTry again\nPlease enter the size board.\n")
     size_board = int(size_board)
     board = Board(size_board)
@@ -26,8 +26,8 @@ def execution():
     while steps < max_steps:
         turn_to_walk = steps % 2 == 0
         step = input(f"Now goes player {first_player if turn_to_walk else second_player}\n").split()
-        while step[0] != 'p' or step[0] != 'q' or not step[0].isdigit() or not step[1].isdigit() or\
-            int(step[0]) < 0 or int(step[1]) < 0 or int(step[0]) >= board.size or int(step[1]) >= board.size:
+        while step[0] != 'p' and step[0] != 'q' and (not step[0].isdigit() or not step[1].isdigit()) and\
+            int(step[0]) < 0 and int(step[1]) < 0 and int(step[0]) >= board.size and int(step[1]) >= board.size:
             step = input(f"Try again\nNow goes player {first_player if turn_to_walk else second_player}\n").split()
         if step[0] == 'p' or step[0] == 'q':
             if step[0] == 'p':
@@ -50,6 +50,3 @@ def execution():
     print("This is a draw!")
 
 execution()
-
-# тесты захуячить получше
-# пользовательский ввод проверить на валидацию
