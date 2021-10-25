@@ -53,3 +53,5 @@ class CustomListTest(unittest.TestCase):
         self.assertEqual(True, [3] == c_l_2)
         self.assertEqual(True, CustomList([3]) == c_l_2)
         self.assertEqual(True, CustomList([1, 2]) == c_l_2)
+        self.assertEqual(True, c_l_1 != c_l_2)
+        self.assertEqual(False, c_l_2 != c_l_2)

@@ -26,3 +26,6 @@ class CustomList(list):
 
     def __eq__(self, other):
         return sum(self) == sum(other)
+
+    def __ne__(self, other):
+        return sum(self) != sum(other)
