@@ -8,8 +8,11 @@ class CustomList(list):
             tmp_self.extend([0]*-diff_size)
         return tmp_self, tmp_other
 
-    def __add__(self, *args, **kwargs):
-        other = list(args[0])
+    def __radd__(self, other):
+        tmp_self, tmp_other = self.__to_one_size__(other)
+        return CustomList([i + j for i, j in zip(tmp_self, tmp_other)])
+
+    def __add__(self, other):
         tmp_self, tmp_other = self.__to_one_size__(other)
         return CustomList([i + j for i, j in zip(tmp_self, tmp_other)])
 
@@ -17,10 +20,9 @@ class CustomList(list):
         tmp_self, tmp_other = self.__to_one_size__(other)
         return CustomList([i - j for i, j in zip(tmp_self, tmp_other)])
 
+    def __rsub__(self, other):
+        tmp_self, tmp_other = self.__to_one_size__(other)
+        return CustomList([j - i for i, j in zip(tmp_self, tmp_other)])
+
     def __eq__(self, other):
         return sum(self) == sum(other)
-
-
-c_l_1 = CustomList([1])
-print([1, 2] + c_l_1)
-print(c_l_1 + [1, 2])
